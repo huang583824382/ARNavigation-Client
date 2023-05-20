@@ -1,0 +1,34 @@
+{
+    "name": "AR Input Actions",
+    "maps": [
+        {
+            "name": "ARTouchActions",
+            "id": "cb0c99df-a6ff-4663-ab05-1be853723269",
+            "actions": [
+                {
+                    "name": "PlaceObject",
+                    "type": "Value",
+                    "id": "62eba7c4-5819-45df-801b-515b12cdff19",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "996188cb-d0bf-426c-a115-76e31fab5301",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
