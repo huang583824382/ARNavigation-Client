@@ -64,7 +64,7 @@ public class ShareManager : MonoBehaviour
             shareButtonIcon.sprite = iconInactive;
         }
     }
-    
+
     public void Test(){
         string test = "{'Sharing': [{'name': 'Mike', 'pose': {'tvec': [-8.6190845, 14.6241837, -17.01165161], 'qvec': [-0.243785, 0.850593865, -0.445609719, 0.135981649]}, 'floor': -1, 'state': {'status': 1, 'locStatus': 3}}]}";
         ParseBroadcast(test);
@@ -179,6 +179,7 @@ public class ShareManager : MonoBehaviour
         userName = network.userName;
         ShareUserListPanel.SetActive(true);
         usersRoot.SetActive(true);
+        StartCoroutine(poseManager.UpdatePoseToServer());
     }
 
     public void StopShare(){
@@ -191,6 +192,7 @@ public class ShareManager : MonoBehaviour
         ShareUserListPanel.SetActive(false);
         usersRoot.SetActive(false);
         miniMapManager.ClearShareUserPointers();
+        StopAllCoroutines();
     }
 
     public void OnShareClick(){

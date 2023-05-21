@@ -33,7 +33,6 @@ public class PoseManager : MonoBehaviour
     private const float UPDATE_POSE_TO_SERVER_INTERVAL = 2;
     private const float FLOOR_HEIGHT = 4.35f;
     DateTime lastRequestTime;
-    Texture2D m_CameraTexture;
     int skipTime = 0;
     PathManager pathManager;
     GameObject local2global;
@@ -81,7 +80,6 @@ public class PoseManager : MonoBehaviour
         if (Application.isEditor)
             Invoke("Test", 2f);
         StartCoroutine(LocalizeRequestCoroutine());
-        StartCoroutine(UpdatePoseToServer());
     }
 
     // Update is called once per frame
@@ -138,11 +136,11 @@ public class PoseManager : MonoBehaviour
         }
     }
 
-    IEnumerator UpdatePoseToServer()
+    public IEnumerator UpdatePoseToServer()
     {
         while (true)
         {
-            // 每5秒尝试发一次就好
+            // 每2秒尝试发一次
             if ((DateTime.Now - lastUpdateTime) >= TimeSpan.FromSeconds(UPDATE_POSE_TO_SERVER_INTERVAL))
             {
                 SendPose();
@@ -216,7 +214,7 @@ public class PoseManager : MonoBehaviour
             cvPoses.RemoveRange(0, 500);
         }
 
-        // 在这里实现一个通过两次定位，确定位置可靠性的逻辑代码
+        // 在这里实现一个通过两次定位，确定位置可靠性的逻辑(未使用)
         switch (AddCamPoseState)
         {
             case AddCamPoseStateEnum.WaitingFirst:
@@ -471,12 +469,12 @@ public class PoseManager : MonoBehaviour
         }
         try
         {
-            m_CameraTexture = imageAccesser.GetCameraFrame();
+            Texture2D m_CameraTexture = imageAccesser.GetCameraFrame();
             AddARPose();
 
             byte[] picDataJPG = m_CameraTexture.EncodeToJPG();
 
-            // 上面生成的是什么东西？
+            // 
 
             Debug.Log($"length {picDataJPG.Length}");
 
