@@ -179,7 +179,6 @@ public class ShareManager : MonoBehaviour
         userName = network.userName;
         ShareUserListPanel.SetActive(true);
         usersRoot.SetActive(true);
-        StartCoroutine(poseManager.UpdatePoseToServer());
     }
 
     public void StopShare(){
@@ -192,7 +191,6 @@ public class ShareManager : MonoBehaviour
         ShareUserListPanel.SetActive(false);
         usersRoot.SetActive(false);
         miniMapManager.ClearShareUserPointers();
-        StopAllCoroutines();
     }
 
     public void OnShareClick(){

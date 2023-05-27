@@ -104,7 +104,7 @@ public class Network : MonoBehaviour
                     t_WSListener.Abort();
                 t_WSListener = new Thread(ListenWS);
                 t_WSListener.Start();
-                Invoke("SendInit", 0.1f);
+                Invoke("SendInit", 0.3f);
                 Debug.Log("Connect success");
             }
         }
@@ -298,6 +298,9 @@ public class Network : MonoBehaviour
 
         float[] intrinsic = new float[4];
         intrinsic = imageAccesser.GetCameraIntrinsic();
+        if(intrinsic[0] == 0){
+            Invoke("SendInit", 0.2f);
+        }
 
         JObject initMsg = new();
         initMsg.Add("Intrinsic", JToken.FromObject(intrinsic));

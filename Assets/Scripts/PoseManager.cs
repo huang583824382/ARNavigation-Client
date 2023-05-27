@@ -31,7 +31,7 @@ public class PoseManager : MonoBehaviour
     private const int MAX_REQUEST_SKIP_TIME = 30;
     private const float NEED_RELOC_INTERVAL = 10;
     private const float UPDATE_POSE_TO_SERVER_INTERVAL = 2;
-    private const float FLOOR_HEIGHT = 4.35f;
+    private const float FLOOR_HEIGHT = 4f;
     DateTime lastRequestTime;
     int skipTime = 0;
     PathManager pathManager;
@@ -80,6 +80,7 @@ public class PoseManager : MonoBehaviour
         if (Application.isEditor)
             Invoke("Test", 2f);
         StartCoroutine(LocalizeRequestCoroutine());
+        StartCoroutine(UpdatePoseToServer());
     }
 
     // Update is called once per frame

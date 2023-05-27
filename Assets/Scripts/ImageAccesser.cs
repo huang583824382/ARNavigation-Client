@@ -64,7 +64,6 @@ public class ImageAccesser : MonoBehaviour
         float[] res = new float[] { 0, 0, 0, 0 };
         if (cameraManager != null && !Application.isEditor){
             XRCameraIntrinsics intrinsics;
-            getIntrinsic:
             while(!cameraManager.TryGetIntrinsics(out intrinsics));
             float fx = intrinsics.focalLength.x;
             float fy = intrinsics.focalLength.y;
@@ -75,7 +74,7 @@ public class ImageAccesser : MonoBehaviour
             if (resolution.x != currentConfig.width || resolution.y != currentConfig.height){
                 Debug.Log("resolution not match, get again");
                 SetCameraConfig();
-                goto getIntrinsic;
+                return new float[]{0, 0, 0, 0};
             }
             Debug.Log("fx: " + fx + ", fy: " + fy + ", cx: " + cx + ", cy: " + cy + ", resolution: " + resolution);
             res = new float[] { (fx + fy) / 2, cy, cx, 0f };
